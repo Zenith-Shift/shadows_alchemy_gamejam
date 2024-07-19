@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://12fkebdvpfgj"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ykait"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ldy34"]
+radius = 0.218077
+height = 0.835515
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4axel"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ykait")
+jump_height = 10.0
+jump_time_to_peak = 0.5
+jump_time_to_fall = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429325, 0)
+shape = SubResource("CapsuleShape3D_ldy34")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.384106, 0, 0, 0, 0.424396, 0, 0, 0, 0.421365, 0, 0.420787, 0)
+mesh = SubResource("CapsuleMesh_4axel")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.993721, 0.111885, 0, -0.111885, 0.993721, 0, 1.5, 4)
