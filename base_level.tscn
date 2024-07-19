@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://davmhkcyeilqa"]
 
 [ext_resource type="PackedScene" uid="uid://usodi6o1kk0p" path="res://scenes/base_level01.tscn" id="1_bpsm8"]
-[ext_resource type="PackedScene" uid="uid://cywuasxm66rxq" path="res://scenes/base_level_02.tscn" id="2_3ee2l"]
-[ext_resource type="PackedScene" uid="uid://12fkebdvpfgj" path="res://scenes/player.tscn" id="3_qfb45"]
+[ext_resource type="PackedScene" path="res://scenes/base_level_02.tscn" id="2_3ee2l"]
+[ext_resource type="PackedScene" uid="uid://dinixhwc23bip" path="res://scenes/player.tscn" id="3_qfb45"]
 [ext_resource type="Script" path="res://CameraChange.gd" id="4_3g5ox"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5afd"]
@@ -17,10 +17,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31581, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_qfb45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2788, 0.0907469, -2.7081)
-jump_height = 3.0
-jump_time_to_peak = 0.6
-jump_time_to_fall = 0.4
-friction = 0.11
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265982, 0.00259376, -0.00313973)
