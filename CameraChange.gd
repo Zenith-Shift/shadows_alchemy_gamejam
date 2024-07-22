@@ -2,11 +2,11 @@ extends Area3D
 
 var entered = false
 
-func _on_body_entered(body: PhysicsBody3D):
+func _on_body_entered(body: Node3D):
 	if body.name == "Player":
 		entered = true
 
-func _on_body_exited(body: PhysicsBody3D):
+func _on_body_exited(body: Node3D):
 	if body.name == "Player" and entered:
 		call_deferred("_disable_collision_and_move_camera")
 

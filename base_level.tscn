@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://davmhkcyeilqa"]
+[gd_scene load_steps=8 format=3 uid="uid://davmhkcyeilqa"]
 
 [ext_resource type="PackedScene" uid="uid://usodi6o1kk0p" path="res://scenes/base_level01.tscn" id="1_bpsm8"]
 [ext_resource type="PackedScene" uid="uid://cywuasxm66rxq" path="res://scenes/base_level_02.tscn" id="2_3ee2l"]
@@ -11,6 +11,12 @@ size = Vector3(0.472656, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtj23"]
 size = Vector3(0.35144, 2.68494, 0.965393)
 
+[sub_resource type="Environment" id="Environment_fx2br"]
+background_mode = 1
+background_color = Color(0.122252, 0.122252, 0.122252, 1)
+ambient_light_color = Color(0.423651, 0.423651, 0.423651, 1)
+ambient_light_energy = 0.01
+
 [node name="base_level" type="Node3D"]
 
 [node name="Base_Level01" parent="." instance=ExtResource("1_bpsm8")]
@@ -20,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6778, 0.000256509, -5.316
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31581, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_qfb45")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2788, 0.0907469, -2.7081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2709, 0.342652, -2.66494)
 jump_height = 3.0
 jump_time_to_peak = 0.6
 jump_time_to_fall = 0.4
@@ -43,6 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1862, 4, 3.3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68518, 1.28018, -2.74037)
 shape = SubResource("BoxShape3D_mtj23")
 disabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fx2br")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
