@@ -8,16 +8,18 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5afd"]
 size = Vector3(0.472656, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mtj23"]
-size = Vector3(0.35144, 2.68494, 0.965393)
-
 [sub_resource type="Environment" id="Environment_fx2br"]
 background_mode = 1
 background_color = Color(0.122252, 0.122252, 0.122252, 1)
 ambient_light_color = Color(0.423651, 0.423651, 0.423651, 1)
 ambient_light_energy = 0.01
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dfoui"]
+height = 3.42691
+radius = 2.28884
+
 [node name="base_level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00442839, 0, -0.000515699)
 
 [node name="Base_Level01" parent="." instance=ExtResource("1_bpsm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6778, 0.000256509, -5.31673e-05)
@@ -26,32 +28,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6778, 0.000256509, -5.316
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31581, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_qfb45")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2709, 0.342652, -2.66494)
+transform = Transform3D(1.0086, 0, 0, 0, 1.0086, 0, 0, 0, 1.0086, -21.2709, 0.342652, -2.66494)
 jump_height = 3.0
 jump_time_to_peak = 0.6
 jump_time_to_fall = 0.4
 friction = 0.11
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265982, 0.00259376, -0.00313973)
+transform = Transform3D(1.03083, 0, 0, 0, 1.03083, 0, 0, 0, 1.03083, 0.265982, 0.00259376, -0.00313973)
 script = ExtResource("4_3g5ox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(0.343509, 0, 0, 0, 3.2636, 0, 0, 0, 1.06107, -5.73342, 1.64878, -2.72294)
+transform = Transform3D(0.0435392, 0, 0, 0, 3.2636, 0, 0, 0, 1.06107, -5.79361, 1.64878, -2.72294)
 shape = SubResource("BoxShape3D_f5afd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1862, 4, 3.3)
 
-[node name="Barrier" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68518, 1.28018, -2.74037)
-shape = SubResource("BoxShape3D_mtj23")
-disabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fx2br")
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0254093, 0.999677, 0, -0.999677, -0.0254093, -14.856, 2.70126, -2.56478)
+shadow_enabled = true
+spot_range = 3.108
+
+[node name="Area3D" type="Area3D" parent="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.11759e-08, 0, -1.11759e-08, 1, 0, -0.0183105, 0.720389)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpotLight3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -0.0407033, -0.996362, 0, 0.896355, -0.0452446, 0, 0.0400808, -1.57689)
+shape = SubResource("CylinderShape3D_dfoui")
+
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
+[connection signal="body_entered" from="SpotLight3D/Area3D" to="Player" method="inside_light"]
+[connection signal="body_exited" from="SpotLight3D/Area3D" to="Player" method="outside_light"]
