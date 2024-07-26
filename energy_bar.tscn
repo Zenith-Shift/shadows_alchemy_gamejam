@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bien4tx6c2vuo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8swnq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3xpp"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="EnergyBar" type="ProgressBar"]
+offset_left = 215.0
+offset_top = 238.0
+offset_right = 477.0
+offset_bottom = 273.0
+scale = Vector2(0.320001, 0.280001)
+theme_override_styles/background = SubResource("StyleBoxFlat_8swnq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b3xpp")
+value = 50.0
+show_percentage = false

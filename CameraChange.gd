@@ -10,3 +10,4 @@ func _process(_delta):
 		$"../Camera3D".position.x = 3.0
 	else:
 		$"../Camera3D".position.x = -13.186
+
