@@ -28,7 +28,7 @@ enum {IDLE,RUN,JUMP}
 @export var blend_speed = 15
 var facing_right = true
 var curAnim = IDLE
-
+@onready var hat: MeshInstance3D = $Circle_001
 @onready var mesh_instance: MeshInstance3D = $"Armature/Skeleton3D/Body mesh"
 
 # COUNTER VARIABLES -----------------------------------------------------------------------------------------
@@ -81,6 +81,7 @@ func change_form():
 			var material: StandardMaterial3D = mesh_instance.get_surface_override_material(0) as StandardMaterial3D
 			if form == Form.light:
 				print("I should be in light mode")
+				#-hat.transform.basis = Basis()
 				material.albedo_color = Color("EEEEEE")
 			elif form == Form.dark:
 				print("I should be in dark mode")
@@ -109,8 +110,10 @@ func _physics_process(delta):
 	var input_velocity = get_input_velocity()
 	if input_velocity != 0:
 		velocity.x = lerp(velocity.x, get_input_velocity() * speed, acceleration)
+		curAnim = RUN
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
+		curAnim= IDLE
 
 	if Input.is_action_just_pressed('jump'):
 		jump_pressed = true
@@ -130,10 +133,9 @@ func _physics_process(delta):
 		jump()
 		light_mode_counter -= double_jump_cost
 		can_double_jump = false
-	if velocity.x == 0 and velocity.z == 0:
-		curAnim= IDLE
-	else:
-		curAnim = RUN
+		
+	if velocity.y > 0:
+		curAnim = JUMP
 	move_and_slide()
 	update_counters(delta)
 	update_direction(input_velocity)
@@ -149,12 +151,14 @@ func handle_animation(delta):
 			run_value = lerpf(run_value,1,blend_speed*delta)
 			jump_value = lerpf(jump_value,0,blend_speed*delta)
 		JUMP:
+			print("jump")
 			run_value = lerpf(run_value,0,blend_speed*delta)
 			jump_value = lerpf(jump_value,1,blend_speed*delta)
 
 
 func update_tree():
 	animation_tree["parameters/Blend2/blend_amount"] = run_value
+	animation_tree["parameters/Blend20/blend_amount"] = jump_value
 func update_direction(input_velocity: float):
 	if input_velocity < 0 and facing_right:
 		mesh_instance.rotate_y(deg_to_rad(180))

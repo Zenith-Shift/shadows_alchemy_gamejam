@@ -213,6 +213,7 @@ visible = false
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.976833, 0.214002, 0, -0.214002, 0.976833, -13.186, 6.07884, 3.3)
+current = true
 
 [node name="FloorButton" parent="." instance=ExtResource("6_6plg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6389, 4.73216, -2.73648)
