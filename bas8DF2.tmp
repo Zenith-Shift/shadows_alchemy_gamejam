@@ -1,13 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://davmhkcyeilqa"]
+[gd_scene load_steps=21 format=3 uid="uid://davmhkcyeilqa"]
 
 [ext_resource type="PackedScene" uid="uid://usodi6o1kk0p" path="res://scenes/base_level01.tscn" id="1_bpsm8"]
+[ext_resource type="PackedScene" uid="uid://cywuasxm66rxq" path="res://scenes/base_level_02.tscn" id="2_3ee2l"]
 [ext_resource type="PackedScene" uid="uid://12fkebdvpfgj" path="res://scenes/player.tscn" id="3_qfb45"]
+[ext_resource type="Script" path="res://CameraChange.gd" id="4_3g5ox"]
 [ext_resource type="Shader" path="res://light.gdshader" id="5_m33m3"]
-[ext_resource type="PackedScene" uid="uid://bvpnkvvd0715i" path="res://scenes/white_door.tscn" id="5_xxqtq"]
-[ext_resource type="PackedScene" uid="uid://dq5y8ty0cd3wc" path="res://scenes/floor_button.tscn" id="6_6plg3"]
-[ext_resource type="PackedScene" uid="uid://cj1nxdiqvehja" path="res://scenes/black_door.tscn" id="6_21m4f"]
-[ext_resource type="Script" path="res://Exit_Area.gd" id="7_o68h4"]
-[ext_resource type="Script" path="res://SubViewport.gd" id="8_nd7y5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f5afd"]
+size = Vector3(0.472656, 1, 1)
 
 [sub_resource type="Environment" id="Environment_fx2br"]
 background_mode = 1
@@ -149,32 +149,38 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dj6sp")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5m6e5"]
-size = Vector3(1.64899, 1.61554, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_c4m2n"]
-viewport_path = NodePath("Exit_Area/Accept text/SubViewport")
-
-[sub_resource type="LabelSettings" id="LabelSettings_awy6v"]
-font_color = Color(0.345098, 0.537255, 0.784314, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_chxvu"]
-viewport_path = NodePath("Exit_Area/Decline text/SubViewport")
-
 [node name="base_level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00442839, 0, -0.000515699)
 
 [node name="Base_Level01" parent="." instance=ExtResource("1_bpsm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6778, 0.000256509, -5.31673e-05)
 
+[node name="base_level02" parent="." instance=ExtResource("2_3ee2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31581, 0, 0)
+
 [node name="Player" parent="." instance=ExtResource("3_qfb45")]
-transform = Transform3D(1.0086, 0, 0, 0, 1.0086, 0, 0, 0, 1.0086, -20.8722, 0.342652, -2.66494)
+transform = Transform3D(1.0086, 0, 0, 0, 1.0086, 0, 0, 0, 1.0086, -21.2709, 0.342652, -2.66494)
+jump_height = 3.0
+jump_time_to_peak = 0.6
+jump_time_to_fall = 0.4
+friction = 0.11
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.03083, 0, 0, 0, 1.03083, 0, 0, 0, 1.03083, 0.265982, 0.00259376, -0.00313973)
+script = ExtResource("4_3g5ox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.0435392, 0, 0, 0, 3.2636, 0, 0, 0, 1.06107, -5.79361, 1.64878, -2.72294)
+shape = SubResource("BoxShape3D_f5afd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1862, 4, 3.3)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fx2br")
 
 [node name="Lamp" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6765, 6.15886, -2.78415)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3709, 6.15886, -2.78415)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Lamp"]
 
@@ -204,57 +210,6 @@ transform = Transform3D(0.62987, 0, 0, 0, 1.6394, 0, 0, 0, 0.62987, 0, 1.75403, 
 mesh = SubResource("ArrayMesh_eiw3o")
 skeleton = NodePath("")
 
-[node name="Black_Door" parent="." instance=ExtResource("6_21m4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87176, -0.539, -3.61673)
-
-[node name="White_Door" parent="." instance=ExtResource("5_xxqtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.872, -0.539, -3.617)
-visible = false
-
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.976833, 0.214002, 0, -0.214002, 0.976833, -13.186, 6.07884, 3.3)
-
-[node name="FloorButton" parent="." instance=ExtResource("6_6plg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6389, 4.73216, -2.73648)
-
-[node name="Exit_Area" type="Area3D" parent="."]
-script = ExtResource("7_o68h4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45573, 1.157, -2.89717)
-shape = SubResource("BoxShape3D_5m6e5")
-
-[node name="Accept text" type="Sprite3D" parent="Exit_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5117, 3.56288, -2.90332)
-visible = false
-texture = SubResource("ViewportTexture_c4m2n")
-
-[node name="SubViewport" type="SubViewport" parent="Exit_Area/Accept text"]
-size = Vector2i(132, 27)
-script = ExtResource("8_nd7y5")
-
-[node name="Label" type="Label" parent="Exit_Area/Accept text/SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Press 'E' To Enter"
-label_settings = SubResource("LabelSettings_awy6v")
-
-[node name="Decline text" type="Sprite3D" parent="Exit_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5117, 3.56288, -2.90332)
-visible = false
-texture = SubResource("ViewportTexture_chxvu")
-
-[node name="SubViewport" type="SubViewport" parent="Exit_Area/Decline text"]
-size = Vector2i(132, 27)
-script = ExtResource("8_nd7y5")
-
-[node name="Label" type="Label" parent="Exit_Area/Decline text/SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Wrong form door"
-label_settings = SubResource("LabelSettings_awy6v")
-
-[connection signal="body_entered" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_entered"]
-[connection signal="body_exited" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_exited"]
-[connection signal="body_entered" from="Exit_Area" to="Exit_Area" method="_on_body_entered"]
-[connection signal="body_exited" from="Exit_Area" to="Exit_Area" method="_on_body_exited"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="Lamp/Light/StaticBody3D" to="Player" method="inside_light"]
+[connection signal="body_exited" from="Lamp/Light/StaticBody3D" to="Player" method="outside_light"]

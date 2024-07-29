@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://12fkebdvpfgj"]
+[gd_scene load_steps=7 format=3 uid="uid://12fkebdvpfgj"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ykait"]
+[ext_resource type="PackedScene" uid="uid://bien4tx6c2vuo" path="res://energy_bar.tscn" id="2_wuy01"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ldy34"]
 radius = 0.218077
@@ -8,11 +9,18 @@ height = 0.835515
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4axel"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8f4lb"]
+shading_mode = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8i6j6"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ykait")
-jump_height = 10.0
-jump_time_to_peak = 0.5
-jump_time_to_fall = 0.5
+jump_height = 3.3
+jump_time_to_peak = 0.6
+jump_time_to_fall = 0.4
+friction = 0.11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429325, 0)
@@ -20,4 +28,16 @@ shape = SubResource("CapsuleShape3D_ldy34")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.384106, 0, 0, 0, 0.424396, 0, 0, 0, 0.421365, 0, 0.420787, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_4axel")
+surface_material_override/0 = SubResource("StandardMaterial3D_8f4lb")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="EnergyBar" parent="SubViewport" instance=ExtResource("2_wuy01")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168313, 0.84949, 0)
+texture = SubResource("ViewportTexture_8i6j6")
