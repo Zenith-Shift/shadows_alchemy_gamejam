@@ -27,12 +27,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		$AnimationPlayer.play("Idle")
 
 	move_and_slide()
 	
-# func _input(_event:InputEvent) -> void:
-#	if Input.is_action_pressed("right"):
-#		$AnimationPlayer.play("Armature|mixamo_com|Layer0")
-#	elif Input.is_action_pressed("left"):
-#		transform = transform.orthonormalized()
-		# Here i am attempting to rotate the player model on left click, but you can do that donny.
+func _input(_event:InputEvent) -> void:
+	if Input.is_action_pressed("right"):
+		$AnimationPlayer.play("walk")

@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265982, 0.00259376, -0.0031
 script = ExtResource("4_3g5ox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(7.17717e-05, 0, 0, 0, 3.2636, 0, 0, 0, 1, -5.7478, 1.64878, -2.72294)
+transform = Transform3D(7.17717e-05, 0, 0, 0, 3.2636, 0, 0, 0, 1, -5.74789, 1.64255, -2.72149)
 shape = SubResource("BoxShape3D_f5afd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
