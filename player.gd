@@ -18,12 +18,16 @@ var can_double_jump = false
 @onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak
 @onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 @onready var fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_fall * jump_time_to_fall)
-
+@onready var animation_tree = $AnimationTree
+var run_value = 0
+var jump_value = 0
 var jump_buffer_time = 0.2 
 var jump_buffer_timer = 0.0
 var jump_pressed = false
-
+enum {IDLE,RUN,JUMP}
+@export var blend_speed = 15
 var facing_right = true
+var curAnim = IDLE
 
 @onready var mesh_instance: MeshInstance3D = $"Armature/Skeleton3D/Body mesh"
 
@@ -45,8 +49,10 @@ func get_input_velocity() -> float:
 	
 	if Input.is_action_pressed('left'):
 		horizontal -= 1.0
+		curAnim = RUN
 	elif Input.is_action_pressed('right'):
 		horizontal += 1.0
+		curAnim = RUN
 	return horizontal
 
 # FORM FUNCTIONS -----------------------------------------------------------------------------------------
@@ -124,21 +130,31 @@ func _physics_process(delta):
 		jump()
 		light_mode_counter -= double_jump_cost
 		can_double_jump = false
-	
+	if velocity.x == 0 and velocity.z == 0:
+		curAnim= IDLE
+	else:
+		curAnim = RUN
 	move_and_slide()
 	update_counters(delta)
-	update_animation(input_velocity)
 	update_direction(input_velocity)
+	handle_animation(delta)
+	update_tree()
 
-func update_animation(input_velocity: float):
-	if jump_pressed:
-		$AnimationPlayer.play("JumpUp_001")
-	elif input_velocity != 0:
-		$AnimationPlayer.play("walk2")
-		$AnimationPlayer.speed_scale = 4
-	elif input_velocity == 0:
-		$AnimationPlayer.play("Idle")
+func handle_animation(delta):
+	match curAnim:
+		IDLE:
+			run_value = lerpf(run_value,0,blend_speed*delta)
+			jump_value = lerpf(jump_value,0,blend_speed*delta)
+		RUN:
+			run_value = lerpf(run_value,1,blend_speed*delta)
+			jump_value = lerpf(jump_value,0,blend_speed*delta)
+		JUMP:
+			run_value = lerpf(run_value,0,blend_speed*delta)
+			jump_value = lerpf(jump_value,1,blend_speed*delta)
 
+
+func update_tree():
+	animation_tree["parameters/Blend2/blend_amount"] = run_value
 func update_direction(input_velocity: float):
 	if input_velocity < 0 and facing_right:
 		mesh_instance.rotate_y(deg_to_rad(180))
