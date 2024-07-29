@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://usodi6o1kk0p" path="res://scenes/base_level01.tscn" id="1_bpsm8"]
 [ext_resource type="PackedScene" uid="uid://12fkebdvpfgj" path="res://scenes/player.tscn" id="3_qfb45"]
 [ext_resource type="Shader" path="res://light.gdshader" id="5_m33m3"]
-[ext_resource type="PackedScene" uid="uid://bvpnkvvd0715i" path="res://scenes/white_door.tscn" id="5_xxqtq"]
-[ext_resource type="PackedScene" uid="uid://dq5y8ty0cd3wc" path="res://scenes/floor_button.tscn" id="6_6plg3"]
-[ext_resource type="PackedScene" uid="uid://cj1nxdiqvehja" path="res://scenes/black_door.tscn" id="6_21m4f"]
+[ext_resource type="PackedScene" path="res://scenes/white_door.tscn" id="5_xxqtq"]
+[ext_resource type="PackedScene" path="res://scenes/floor_button.tscn" id="6_6plg3"]
+[ext_resource type="PackedScene" path="res://scenes/black_door.tscn" id="6_21m4f"]
 [ext_resource type="Script" path="res://Exit_Area.gd" id="7_o68h4"]
 [ext_resource type="Script" path="res://SubViewport.gd" id="8_nd7y5"]
 
