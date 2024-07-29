@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv1p0bi041nso"]
+[gd_scene load_steps=5 format=3 uid="uid://dv1p0bi041nso"]
+
+[ext_resource type="Texture2D" uid="uid://d1y35d082qrjr" path="res://ORANGE_BRICK_DIFF.png" id="1_h05f0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kmakd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox6j0"]
 shading_mode = 0
-albedo_color = Color(0, 0.678431, 0.709804, 1)
+albedo_color = Color(0.819646, 0.662061, 0.631404, 1)
+albedo_texture = ExtResource("1_h05f0")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mk61o"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)

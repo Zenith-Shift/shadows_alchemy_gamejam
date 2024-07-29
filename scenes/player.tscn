@@ -17,9 +17,10 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ykait")
-jump_height = 10.0
-jump_time_to_peak = 0.5
-jump_time_to_fall = 0.5
+jump_height = 3.3
+jump_time_to_peak = 0.6
+jump_time_to_fall = 0.4
+friction = 0.11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429325, 0)
