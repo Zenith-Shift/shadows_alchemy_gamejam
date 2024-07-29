@@ -23,7 +23,9 @@ var jump_buffer_time = 0.2
 var jump_buffer_timer = 0.0
 var jump_pressed = false
 
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+var facing_right = true
+
+@onready var mesh_instance: MeshInstance3D = $"Armature/Skeleton3D/Body mesh"
 
 # COUNTER VARIABLES -----------------------------------------------------------------------------------------
 var dark_mode_counter : float = 50.0
@@ -125,3 +127,22 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	update_counters(delta)
+	update_animation(input_velocity)
+	update_direction(input_velocity)
+
+func update_animation(input_velocity: float):
+	if jump_pressed:
+		$AnimationPlayer.play("JumpUp_001")
+	elif input_velocity != 0:
+		$AnimationPlayer.play("walk2")
+		$AnimationPlayer.speed_scale = 4
+	elif input_velocity == 0:
+		$AnimationPlayer.play("Idle")
+
+func update_direction(input_velocity: float):
+	if input_velocity < 0 and facing_right:
+		mesh_instance.rotate_y(deg_to_rad(180))
+		facing_right = false
+	elif input_velocity > 0 and !facing_right:
+		mesh_instance.rotate_y(deg_to_rad(180))
+		facing_right = true
