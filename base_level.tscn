@@ -1,21 +1,23 @@
-[gd_scene load_steps=27 format=3 uid="uid://davmhkcyeilqa"]
+[gd_scene load_steps=28 format=3 uid="uid://davmhkcyeilqa"]
 
 [ext_resource type="PackedScene" uid="uid://usodi6o1kk0p" path="res://scenes/base_level01.tscn" id="1_bpsm8"]
 [ext_resource type="PackedScene" uid="uid://12fkebdvpfgj" path="res://scenes/player.tscn" id="3_qfb45"]
 [ext_resource type="Shader" path="res://light.gdshader" id="5_m33m3"]
-[ext_resource type="PackedScene" path="res://scenes/white_door.tscn" id="5_xxqtq"]
-[ext_resource type="PackedScene" path="res://scenes/floor_button.tscn" id="6_6plg3"]
-[ext_resource type="PackedScene" path="res://scenes/black_door.tscn" id="6_21m4f"]
+[ext_resource type="PackedScene" uid="uid://bvpnkvvd0715i" path="res://scenes/white_door.tscn" id="5_xxqtq"]
+[ext_resource type="PackedScene" uid="uid://dq5y8ty0cd3wc" path="res://scenes/floor_button.tscn" id="6_6plg3"]
+[ext_resource type="PackedScene" uid="uid://cj1nxdiqvehja" path="res://scenes/black_door.tscn" id="6_21m4f"]
 [ext_resource type="Script" path="res://Exit_Area.gd" id="7_o68h4"]
 [ext_resource type="Script" path="res://SubViewport.gd" id="8_nd7y5"]
+[ext_resource type="PackedScene" uid="uid://dnojk2jvtgin8" path="res://platform.tscn" id="9_5qb75"]
 
 [sub_resource type="Environment" id="Environment_fx2br"]
 background_mode = 1
-background_color = Color(0.209664, 0.156626, 0.124356, 1)
+background_color = Color(0.6288, 0.589075, 0.60759, 1)
 ambient_light_color = Color(0.423651, 0.423651, 0.423651, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c85rv"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmdki"]
+size = Vector3(0.0110046, 0.0189697, 0.0106384)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyaxb"]
 resource_name = "Material.001"
@@ -174,13 +176,13 @@ transform = Transform3D(1.0086, 0, 0, 0, 1.0086, 0, 0, 0, 1.0086, -20.8722, 0.34
 environment = SubResource("Environment_fx2br")
 
 [node name="Lamp" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6765, 6.15886, -2.78415)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.60935, 6.15886, -2.78415)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Lamp"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lamp/RigidBody3D"]
-transform = Transform3D(-126.39, 0, 0, 0, 34.9887, 0, 0, 0, 126.821, 0, 0.165797, 0)
-shape = SubResource("ConvexPolygonShape3D_c85rv")
+transform = Transform3D(-126.39, 0, 0, 0, 34.9887, 0, 0, 0, 126.821, -0.0605564, 0.290086, -0.0267048)
+shape = SubResource("BoxShape3D_vmdki")
 
 [node name="Light" type="MeshInstance3D" parent="Lamp"]
 transform = Transform3D(0.701988, 0, 0, 0, 0.701988, 0, 0, 0, 0.701988, 0.000604421, -0.0157413, 0)
@@ -205,18 +207,15 @@ mesh = SubResource("ArrayMesh_eiw3o")
 skeleton = NodePath("")
 
 [node name="Black_Door" parent="." instance=ExtResource("6_21m4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87176, -0.539, -3.61673)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.78376, -0.539, -3.61673)
 
 [node name="White_Door" parent="." instance=ExtResource("5_xxqtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.872, -0.539, -3.617)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.784, -0.539, -3.617)
 visible = false
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.976833, 0.214002, 0, -0.214002, 0.976833, -13.186, 6.07884, 3.3)
 current = true
-
-[node name="FloorButton" parent="." instance=ExtResource("6_6plg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6389, 4.73216, -2.73648)
 
 [node name="Exit_Area" type="Area3D" parent="."]
 script = ExtResource("7_o68h4")
@@ -254,6 +253,15 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Wrong form door"
 label_settings = SubResource("LabelSettings_awy6v")
+
+[node name="Platform" parent="." instance=ExtResource("9_5qb75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3135, 2.94305, -2.47542)
+
+[node name="Platform with button" parent="." instance=ExtResource("9_5qb75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6862, 4.09035, -2.47542)
+
+[node name="FloorButton" parent="Platform with button" instance=ExtResource("6_6plg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272496, -0.289348)
 
 [connection signal="body_entered" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_entered"]
 [connection signal="body_exited" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_exited"]
