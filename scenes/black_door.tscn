@@ -2,13 +2,10 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_at04g"]
 resource_name = "DoorSet_Mat_albedo"
-load_path = "res://.godot/imported/DoorsAsset_DoorSet_Base Color.png-ea01b40c54aca53b808f7de9936e0753.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5aa4"]
-load_path = "res://.godot/imported/DoorsAsset_DoorSet_METALLIC-DoorSet_ROUGHNESS.png-f7140891de9c1115f85fbc88d097c8cf.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vavla"]
-load_path = "res://.godot/imported/DoorsAsset_DoorSet_NORMAL.png-752cc50096b69bfb3734ae2391483223.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvkc8"]
 resource_name = "DoorSet_Mat"

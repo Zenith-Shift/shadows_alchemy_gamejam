@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bou5sa1mpvq46"]
+[gd_scene load_steps=45 format=3 uid="uid://b45gnyw1nlkaw"]
 
 [ext_resource type="Material" uid="uid://cs2qn5ydiavgl" path="res://scenes/Materials/Env2Mat.tres" id="1_hora4"]
 [ext_resource type="Texture2D" uid="uid://ch1qacnest1pb" path="res://scenes/Materials/DefaultMaterial_BaseColor.png" id="2_iyqt2"]
@@ -433,6 +433,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_avldq")
 
 [node name="Cylinder_009" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.30976, 0, 0, 0, 0, -6.30976, 0, 6.30976, 0, -13.1736, 11.4399, 71.6278)
+material_override = ExtResource("1_hora4")
 mesh = SubResource("ArrayMesh_cfny0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_avldq")
