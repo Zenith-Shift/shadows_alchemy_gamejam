@@ -28,9 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
-handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.992454, 0.0275989, 0.119468, -5.90959e-09, 0.974339, -0.225087, -0.122614, -0.223389, -0.966987, -0.412604, 4.13262, -1.34627)
