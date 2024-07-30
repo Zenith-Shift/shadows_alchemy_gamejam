@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://btmvnia6851qq"]
+[gd_scene load_steps=7 format=3 uid="uid://m5g3h2xcrj8t"]
 
-[ext_resource type="Script" path="res://scenes/Menu.gd" id="1_24e1g"]
-[ext_resource type="FontFile" uid="uid://cgxvxqu6l82lx" path="res://Sora-VariableFont_wght.ttf" id="1_jwxhu"]
-[ext_resource type="PackedScene" uid="uid://bltvqhgivw32f" path="res://scenes/workspace3.glb" id="2_40iin"]
+[ext_resource type="FontFile" uid="uid://cgxvxqu6l82lx" path="res://Sora-VariableFont_wght.ttf" id="1_v75t2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37vd1"]
 
@@ -14,30 +12,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njvua"]
 
-[node name="Menu" type="CanvasLayer"]
+[node name="End Screen" type="CanvasLayer"]
 follow_viewport_enabled = true
-script = ExtResource("1_24e1g")
-
-[node name="Background" type="Node3D" parent="."]
-
-[node name="workspace3" parent="Background" instance=ExtResource("2_40iin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25643, 0, -7.15521)
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.945382, 0, 0.325964, 0, 1, 0, -0.325964, 0, -0.945382, 2.73828, 4.4393, 0)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -66,7 +42,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("1_jwxhu")
+theme_override_fonts/font = ExtResource("1_v75t2")
 theme_override_font_sizes/font_size = 62
 text = "Zenith Shift"
 
@@ -74,16 +50,16 @@ text = "Zenith Shift"
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Start" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="END GAME" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_pressed_color = Color(0.998762, 0.90791, 0.642331, 1)
-theme_override_colors/font_hover_color = Color(0.633813, 0.504681, 0.0579494, 1)
-theme_override_fonts/font = ExtResource("1_jwxhu")
+theme_override_colors/font_pressed_color = Color(0.989189, 0.00694086, 0, 1)
+theme_override_colors/font_hover_color = Color(0.454866, 0.018741, 0.057936, 1)
+theme_override_fonts/font = ExtResource("1_v75t2")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_37vd1")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_jqdoi")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gr7cf")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6byp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_njvua")
-text = "Start Game"
+text = "The End"

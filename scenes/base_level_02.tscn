@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cywuasxm66rxq"]
+[gd_scene load_steps=33 format=3 uid="uid://cywuasxm66rxq"]
 
 [ext_resource type="PackedScene" uid="uid://12fkebdvpfgj" path="res://scenes/player.tscn" id="2_s8y8a"]
 [ext_resource type="PackedScene" uid="uid://dnojk2jvtgin8" path="res://platform.tscn" id="3_bya3t"]
@@ -10,6 +10,8 @@
 [ext_resource type="Material" uid="uid://pfycsu47lams" path="res://textures/Platformamt.tres" id="8_v1dy2"]
 [ext_resource type="PackedScene" uid="uid://duohf7anawjl5" path="res://Models/wall.glb" id="9_4dfx6"]
 [ext_resource type="PackedScene" uid="uid://by2j285sjjny4" path="res://light_button.tscn" id="10_dvhul"]
+[ext_resource type="Script" path="res://scenes/leave_game.gd" id="11_e1vta"]
+[ext_resource type="Script" path="res://SubViewport.gd" id="12_miw1y"]
 
 [sub_resource type="Environment" id="Environment_4j28r"]
 background_mode = 1
@@ -172,6 +174,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dj6sp")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qds02"]
+size = Vector3(4.77142, 1.58643, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5dlc"]
+viewport_path = NodePath("game_end/End Game/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_m6kny"]
+font_color = Color(0.345098, 0.537255, 0.784314, 1)
+
 [node name="base_level02" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502024, 0, 0)
 
@@ -267,7 +278,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40191, 4.61239, 2.78194)
 shape = SubResource("BoxShape3D_bajh5")
 
 [node name="Lamp" type="Node3D" parent="."]
-transform = Transform3D(2.07231, 0, 0, 0, 1.93693, 0, 0, 0, 1, 14.3108, 10.6687, 0.0653729)
+transform = Transform3D(2.29072, 0, 0, 0, 1.93693, 0, 0, 0, 1, 14.3108, 10.6687, 0.0653729)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Lamp"]
 
@@ -322,10 +333,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40191, 4.61239, 2.78194)
 shape = SubResource("BoxShape3D_bajh5")
 
 [node name="Light Button" parent="wall4" instance=ExtResource("10_dvhul")]
-transform = Transform3D(0.243395, 0, 0, 0, 10.7813, 0, 0, 0, 1, 0.135602, 8.51065, 2.78053)
+transform = Transform3D(0.243395, 0, 0, 0, 10.7813, 0, 0, 0, 1, 0.135602, 8.16978, 2.78053)
+
+[node name="game_end" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1842, 0.797764, 0)
+script = ExtResource("11_e1vta")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game_end"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00910759, 0.293213, 0)
+shape = SubResource("BoxShape3D_qds02")
+
+[node name="End Game" type="Sprite3D" parent="game_end"]
+transform = Transform3D(1.83886, 0, 0, 0, 1.78541, 0, 0, 0, 1, 0.743046, 2.9516, -0.439684)
+visible = false
+texture = SubResource("ViewportTexture_s5dlc")
+
+[node name="SubViewport" type="SubViewport" parent="game_end/End Game"]
+size = Vector2i(97, 27)
+script = ExtResource("12_miw1y")
+
+[node name="Label" type="Label" parent="game_end/End Game/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Finish Game
+"
+label_settings = SubResource("LabelSettings_m6kny")
 
 [connection signal="body_entered" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_entered"]
 [connection signal="body_exited" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_exited"]
+[connection signal="body_entered" from="game_end" to="game_end" method="_on_body_entered"]
+[connection signal="body_exited" from="game_end" to="game_end" method="_on_body_exited"]
 
 [editable path="platWide (2)"]
 [editable path="wall2"]
