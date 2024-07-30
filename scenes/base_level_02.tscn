@@ -282,7 +282,6 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_8xovl")
 
 [node name="StaticBody3D" type="Area3D" parent="Lamp/Light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lamp/Light/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6tx5y")
