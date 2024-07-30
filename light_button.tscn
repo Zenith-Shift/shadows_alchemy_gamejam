@@ -1,19 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq5y8ty0cd3wc"]
+[gd_scene load_steps=10 format=3 uid="uid://by2j285sjjny4"]
 
-[ext_resource type="Script" path="res://FloorButton.gd" id="1_jh5pc"]
+[ext_resource type="Script" path="res://Light Button.gd" id="1_dgbrr"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_a6qa6"]
+[sub_resource type="BoxMesh" id="BoxMesh_xv7sg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb30c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjhec"]
 shading_mode = 0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_el1d8"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_p4ji7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb2h0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfy6h"]
 shading_mode = 0
-albedo_color = Color(0.731102, 0.0135481, 0, 1)
+albedo_color = Color(0, 0.27753, 0.625747, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_88qyp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksdso"]
 size = Vector3(1, 0.174133, 1)
 
 [sub_resource type="Animation" id="Animation_7tx05"]
@@ -54,28 +54,28 @@ _data = {
 "pressup": SubResource("Animation_e37uh")
 }
 
-[node name="FloorButton" type="StaticBody3D"]
-script = ExtResource("1_jh5pc")
+[node name="Light Button" type="Area3D"]
+script = ExtResource("1_dgbrr")
 
 [node name="Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.100975, 0, 0, 0, 1, 0, 0.0451059, 0)
-mesh = SubResource("BoxMesh_a6qa6")
-surface_material_override/0 = SubResource("StandardMaterial3D_tb30c")
+mesh = SubResource("BoxMesh_xv7sg")
+surface_material_override/0 = SubResource("StandardMaterial3D_fjhec")
 
 [node name="Button" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.951341, 0, 0, 0, 0.0892188, 0, 0, 0, 0.933054, 0, 0.052547, 0)
-mesh = SubResource("CylinderMesh_el1d8")
-surface_material_override/0 = SubResource("StandardMaterial3D_jb2h0")
+mesh = SubResource("CylinderMesh_p4ji7")
+surface_material_override/0 = SubResource("StandardMaterial3D_hfy6h")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.082428, 0)
-shape = SubResource("BoxShape3D_88qyp")
+shape = SubResource("BoxShape3D_ksdso")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440063, 0)
-shape = SubResource("BoxShape3D_88qyp")
+shape = SubResource("BoxShape3D_ksdso")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://darxxlsfcua2i" path="res://Models/platWide (2).glb" id="7_ri8cf"]
 [ext_resource type="Material" uid="uid://pfycsu47lams" path="res://textures/Platformamt.tres" id="8_v1dy2"]
 [ext_resource type="PackedScene" uid="uid://duohf7anawjl5" path="res://Models/wall.glb" id="9_4dfx6"]
-[ext_resource type="PackedScene" uid="uid://dq5y8ty0cd3wc" path="res://scenes/floor_button.tscn" id="10_8wiqm"]
+[ext_resource type="PackedScene" uid="uid://by2j285sjjny4" path="res://light_button.tscn" id="10_dvhul"]
 
 [sub_resource type="Environment" id="Environment_4j28r"]
 background_mode = 1
@@ -321,8 +321,8 @@ material_override = ExtResource("8_v1dy2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40191, 4.61239, 2.78194)
 shape = SubResource("BoxShape3D_bajh5")
 
-[node name="FloorButton" parent="." instance=ExtResource("10_8wiqm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31338, 5.71939, 0.159446)
+[node name="Light Button" parent="wall4" instance=ExtResource("10_dvhul")]
+transform = Transform3D(0.243395, 0, 0, 0, 10.7813, 0, 0, 0, 1, 0.135602, 8.51065, 2.78053)
 
 [connection signal="body_entered" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_entered"]
 [connection signal="body_exited" from="Lamp/Light/StaticBody3D" to="Player" method="_on_static_body_3d_body_exited"]

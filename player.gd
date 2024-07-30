@@ -1,7 +1,6 @@
 extends CharacterBody3D
 # FORM VARIABLES -----------------------------------------------------------------------------------------
 @export var form : Form = Form.dark
-
 enum Form{
 	light,
 	dark
@@ -61,11 +60,9 @@ var exited_position: Vector3 = Vector3.ZERO
 
 func _on_static_body_3d_body_entered(body: CharacterBody3D):
 	if body == self:
-		print("Your mom 1")
 		entered_position = self.global_transform.origin
 func _on_static_body_3d_body_exited(body: CharacterBody3D):
 	if body == self:
-		print("Your mom 2")
 		exited_position = self.global_transform.origin
 		if correct_exit(entered_position, exited_position):
 			form = Form.dark if form == Form.light else Form.light
