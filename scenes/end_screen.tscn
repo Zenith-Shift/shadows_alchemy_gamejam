@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://m5g3h2xcrj8t"]
+[gd_scene load_steps=8 format=3 uid="uid://m5g3h2xcrj8t"]
 
+[ext_resource type="Script" path="res://scenes/end_screen.gd" id="1_4y1tr"]
 [ext_resource type="FontFile" uid="uid://cgxvxqu6l82lx" path="res://Sora-VariableFont_wght.ttf" id="1_v75t2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37vd1"]
@@ -14,6 +15,7 @@
 
 [node name="End Screen" type="CanvasLayer"]
 follow_viewport_enabled = true
+script = ExtResource("1_4y1tr")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
